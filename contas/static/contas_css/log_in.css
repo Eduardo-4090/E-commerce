@@ -1,0 +1,117 @@
+/* Reset Básico */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Adicionado para facilitar o layout */
+    font-family: Arial, sans-serif; /* Define uma fonte padrão */
+}
+
+/* Estilo do Corpo da Página */
+body {
+    /* Usar 100% de largura/altura da viewport */
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgb(177, 175, 175);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Adiciona um pequeno padding para telas menores */
+}
+
+/* Contêiner Principal de Login */
+.login-container {
+    background-color: white;
+    /* Define uma largura máxima para telas grandes e 90% para telas menores */
+    width: 90%; 
+    max-width: 450px; /* Largura máxima ideal para um formulário de login */
+    padding: 20px;
+    border-radius: 8px; /* Borda arredondada para melhor visual */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Cabeçalho (LOGIN) */
+.header {
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2rem; /* Tamanho da fonte em rem */
+    color: #333;
+}
+
+/* Área do Formulário */
+.forms-area {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forms-area form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ocupa a largura total do .login-container */
+}
+
+/* Estilo para Rótulos (Labels) */
+.forms-area label {
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo para Campos de Input */
+.forms-area input[type="text"],
+.forms-area input[type="password"] {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.forms-area input[type="text"]:focus,
+.forms-area input[type="password"]:focus {
+    border-color: #007bff; /* Cor destacada ao focar */
+    outline: none;
+}
+
+/* Estilo para o Botão de Envio (Submit) */
+.submit-button {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Media Query para Dispositivos Maiores (Opcional) --- */
+/* Garante que o contêiner de login não fique muito grande em desktops */
+@media (min-width: 768px) {
+    .login-container {
+        padding: 30px;
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .forms-area input[type="text"],
+    .forms-area input[type="password"],
+    .submit-button {
+        padding: 1rem;
+    }
+}
