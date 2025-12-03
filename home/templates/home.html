@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,24 +9,35 @@
 </head>
 <body>
     <div class="topo">
-        <section>
-            <header>
-                <h1>E-commerce</h1>
-                <input type="text" placeholder="BUSCAR">
-                <a href="">🛒</a>
-            </header>
-        </section>
+        <header>
+            <h1>E-commerce</h1>
+            <input type="text" placeholder="BUSCAR">
+            <a href="" >🛒</a>
+        </header>
     </div>
+
     <div class="baner">
-        <section>
-            <img src="{% static 'home_img/foto_baner.png' %}" alt="baner">
-            <h1>A melhor loja <br> de <br>items esportivos <br> para motos</h1>
-        </section>
+        <img src="{% static 'home_img/foto_baner.png' %}" alt="baner">
+        <h1>A melhor loja <br> de <br> itens esportivos <br> para motos</h1>
     </div>
-    <div class="conteine_produtos">
-        <div class="produtos">
-            
+    <main>
+        <div class="conteine_produtos">
+            <div class="produtos">
+                {% for produto in produtos %}
+                <a href="{% url 'detalhe_produto' produto.slug %}" class="link-produto">
+                <div class="card-produto">
+                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                        <div class="info-produto">
+                            <h3>{{ produto.nome }}</h3>
+                        </div>
+                        <p class="preco">R$ {{ produto.valor|floatformat:2 }}</p> 
+                    </div>
+                </a>
+                {% empty %}
+                <p>Nenhum produto encontrado.</p>
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
