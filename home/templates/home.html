@@ -11,22 +11,31 @@
     <div class="topo">
         <header>
             <h1>E-commerce</h1>
-            <input type="text" placeholder="BUSCAR">
+            <input type="text" placeholder="BUSCAR" id="campo-busca">
             <a href="" >🛒</a>
         </header>
     </div>
-
     <div class="baner">
         <img src="{% static 'home_img/foto_baner.png' %}" alt="baner">
         <h1>A melhor loja <br> de <br> itens esportivos <br> para motos</h1>
+    </div>
+    <div class="categorias">
+        <h1>Categorias</h1>
+        {% for categoria in categorias %}
+        <a href="{% url 'filtro' categoria.slug %}">
+            <div>
+                <h3> {{categoria.nome}} </h3>
+            </div>
+        </a>
+        {% endfor %}
     </div>
     <main>
         <div class="conteine_produtos">
             <div class="produtos">
                 {% for produto in produtos %}
                 <a href="{% url 'detalhe_produto' produto.slug %}" class="link-produto">
-                <div class="card-produto">
-                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                <div class="card-produto" data-nome-produto="{{ produto.nome|lower }}">
+                        <img src="{{ produto.capa.url }}" alt="{{ produto.nome }}">
                         <div class="info-produto">
                             <h3>{{ produto.nome }}</h3>
                         </div>
@@ -39,5 +48,6 @@
             </div>
         </div>
     </main>
+    <script src="{% static 'home_js/home.js'%}"></script>
 </body>
 </html>

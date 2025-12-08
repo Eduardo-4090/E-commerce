@@ -5,8 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <link rel="stylesheet" href="{% static 'home_css/produto.css'%}">
 </head>
 <body>
-    
+    <div class="topo">
+        <header>
+            <h1>E-commerce</h1>
+            <input type="text" placeholder="BUSCAR">
+            <a href="" >🛒</a>
+        </header>
+    </div>
+    <main>
+        <section class="conteine-produto">
+            <section class="imgs">
+                <div class="img-principal">
+                    <img src="{{slug_url.capa.url}}" alt="{{slug_url.nome}}">
+                </div>
+                <div class="conteine-img">
+                    <div class="mini-img">
+                        <img src="{{slug_url.capa.url}}" alt="{{slug_url.nome}}">
+                    </div>
+                    {% for img in slug_url.galeria_set.all %}
+                    <div class="mini-img">
+                        <img src="{{img.imagem_opcional.url}}">
+                    </div>
+                    {% empty %}
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="info-produto">
+                <div class="titulo">
+                    <h2>{{slug_url.nome}}</h2>
+                </div>
+                <div class="preco-produto">
+                    <p class="preco-atual">R$ {{slug_url.valor}}</p>
+                </div>
+
+                <div class="acao-compra">
+                    <button class="btn-comprar">COMPRAR AGORA</button>
+                    <button class="btn-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </section>
+        </section>
+        <section>
+            <div class="conteine-descrition">
+                <div class="descritin">
+                    <h1>DESCRIÇÃO</h1>
+                </div>
+                <div class="info-descrition">
+                    <p>{{slug_url.descrition}}</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="{% static  'home_js/produto.js'%}"></script>
 </body>
 </html>

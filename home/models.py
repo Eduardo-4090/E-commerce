@@ -14,13 +14,21 @@ class Produtos(models.Model):
     descrition = models.TextField(blank=True)
     valor = models.DecimalField(max_digits=10 , decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
-    imagem = models.ImageField(upload_to='produtos/')
+    capa = models.ImageField(upload_to='produto/capa/')
+    video_opcinal = models.FileField(upload_to='produto/video/', null=True , blank=True)
     slug = models.SlugField( unique=True)
     creat_data = models.DateField(auto_now_add=True)
     update_data = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.nome
+
+class Galeria(models.Model):
+    produto = models.ForeignKey(Produtos, on_delete=models.CASCADE)
+    imagem_opcional = models.ImageField(upload_to='produto/galeria/')
+
+    def __str__(self):
+        return self.produto.nome
 
 class Cart(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
@@ -35,32 +43,11 @@ class CartItem(models.Model):
     produtos = models.ForeignKey(Produtos , on_delete=models.CASCADE)
     quantidade = models.PositiveIntegerField(default=1)
 
-    def __init__(self):
+    def subtotal(self):
         return self.quantidade * self.produtos.valor
     
-class Order(models.Model):
-    user = models.ForeignKey(User , on_delete=models.CASCADE)
-    creat_data = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(
-        max_length=20,
-        choices=[
-            ('PENDING', 'Pendente'),
-            ('PAID', 'Pago'),
-            ('SHIPPED', 'Enviado'),
-            ('DELIVERED', 'Entregue'),
-        ],
-        default='PENDING'
-    )
-    
     def __str__(self):
-        return f"Pedido {self.id} de {self.user.username}"
+        return f"{self.quantidade}x de {self.produtos.nome} no carrinho {self.cart.id}"
+    
 
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Produtos, on_delete=models.PROTECT)
-    quantity = models.PositiveIntegerField()
-    valor = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def subtotal(self):
-        return self.quantity * self.price
 
