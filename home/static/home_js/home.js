@@ -20,4 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    setTimeout(()=>{
+            const msg = document.getElementById('messages');
+            if (msg){
+                 msg.style.display ='none'
+            }
+        },4000 );
 });

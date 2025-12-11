@@ -8,7 +8,7 @@ class GaleriaImagem(admin.TabularInline):
 
 @admin.register(Produtos)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'category', 'valor', 'stock', 'creat_data')
+    list_display = ('nome', 'category', 'valor',)
     list_filter = ('category',)
     search_fields = ('nome',)
     prepopulated_fields = {'slug': ('nome',)}

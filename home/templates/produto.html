@@ -12,9 +12,16 @@
         <header>
             <h1>E-commerce</h1>
             <input type="text" placeholder="BUSCAR">
-            <a href="" >🛒</a>
+            <a href="{% url 'carrinho'%}" >🛒</a>
         </header>
     </div>
+    {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-{{msg.tags}}" id="messages">
+            {{msg}}
+        </div>
+        {% endfor %}
+    {% endif %}
     <main>
         <section class="conteine-produto">
             <section class="imgs">
@@ -58,6 +65,12 @@
             </div>
         </section>
     </main>
+    <form action="{% url 'add-carrinho'%}" method="POST" style="display: none;" id="add-carrinho-form">
+        {% csrf_token %}
+        <input type="hidden" name="produto_id" value="{{slug_url.id}}">
+        <input type="hidden" name="quantidade" value="1">
+        <input type="text" name="produto_slug" value="{{slug_url.slug}}">
+    </form>
     <script src="{% static  'home_js/produto.js'%}"></script>
 </body>
 </html>

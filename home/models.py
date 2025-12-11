@@ -13,12 +13,9 @@ class Produtos(models.Model):
     nome = models.CharField(max_length=200)
     descrition = models.TextField(blank=True)
     valor = models.DecimalField(max_digits=10 , decimal_places=2)
-    stock = models.PositiveIntegerField(default=0)
     capa = models.ImageField(upload_to='produto/capa/')
     video_opcinal = models.FileField(upload_to='produto/video/', null=True , blank=True)
     slug = models.SlugField( unique=True)
-    creat_data = models.DateField(auto_now_add=True)
-    update_data = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.nome
@@ -32,8 +29,6 @@ class Galeria(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
-    creat_data = models.DateField(auto_now_add=True)
-    update_data = models.DateField(auto_now=True)
 
     def __str__(self):
         return f"Carrinho de {self.user.username}"

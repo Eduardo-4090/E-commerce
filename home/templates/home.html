@@ -10,11 +10,18 @@
 <body>
     <div class="topo">
         <header>
-            <h1>E-commerce</h1>
+            <h1><span>E-comm</span>erce</h1>
             <input type="text" placeholder="BUSCAR" id="campo-busca">
-            <a href="" >🛒</a>
+            <a href="{% url 'carrinho'%}" >🛒</a>
         </header>
     </div>
+     {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-{{msg.tags}}" id="messages">
+            {{msg}}
+        </div>
+        {% endfor %}
+    {% endif %}
     <div class="baner">
         <img src="{% static 'home_img/foto_baner.png' %}" alt="baner">
         <h1>A melhor loja <br> de <br> itens esportivos <br> para motos</h1>

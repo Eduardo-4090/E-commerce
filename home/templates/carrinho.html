@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho De Compras</title>
+    <link rel="stylesheet" href="{% static 'home_css/carrinho.css'%}">
+</head>
+<body>
+    {% if massages %}
+        {% for msg in messages %}
+        <div class="alert aclert-{{msg.tag}}">
+            {{msg}}
+        </div>
+        {% endfor %}
+    {% endif %} 
+    <div class="topo">
+        <h1><span>CARRINHO</span> DE COMPRAS</h1>
+    </div>
+    <div class="geral">
+        <div class="produto-carrinho">
+            {% if cart_items %}
+                {% for item in cart_items %}
+                
+                {% endfor %}
+            {% else %}
+            <p>Carrinho vazio</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
